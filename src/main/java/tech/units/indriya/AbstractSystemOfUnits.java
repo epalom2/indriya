@@ -55,12 +55,12 @@ import static tech.units.indriya.format.UnitStyle.*;
  */
 public abstract class AbstractSystemOfUnits implements SystemOfUnits, Nameable {
 	protected static final Logger logger = Logger.getLogger(AbstractSystemOfUnits.class.getName());
-	
+
 	/**
 	 * Holds the units.
 	 */
 	protected final Set<Unit<?>> units = new HashSet<>();
-	
+
 	/**
 	 * Holds the mapping quantity to unit.
 	 */
@@ -214,7 +214,7 @@ public abstract class AbstractSystemOfUnits implements SystemOfUnits, Nameable {
 		public static <U extends Unit<?>> U addUnit(Set<Unit<?>> units, U unit, final String name, final String symbol,
 													UnitStyle style) {
 			switch (style) {
-				case NAME:
+				case SYMBOL:
 					if (name != null && unit instanceof AbstractUnit) {
 						AbstractUnit<?> aUnit = (AbstractUnit<?>) unit;
 						aUnit.setName(name);
@@ -223,7 +223,7 @@ public abstract class AbstractSystemOfUnits implements SystemOfUnits, Nameable {
 					}
 					break;
 				case NAME_AND_SYMBOL:
-				case SYMBOL:
+				case NAME:
 					if (unit instanceof AbstractUnit) {
 						AbstractUnit<?> aUnit = (AbstractUnit<?>) unit;
 						if (name != null && NAME_AND_SYMBOL.equals(style)) {
@@ -277,7 +277,7 @@ public abstract class AbstractSystemOfUnits implements SystemOfUnits, Nameable {
 		@SuppressWarnings("unchecked")
 		public static <U extends Unit<?>> U addUnit(Set<Unit<?>> units, U unit, String text, UnitStyle style) {
 			switch (style) {
-				case NAME:
+				case SYMBOL_AND_LABEL:
 					if (text != null && unit instanceof AbstractUnit) {
 						AbstractUnit<?> aUnit = (AbstractUnit<?>) unit;
 						aUnit.setName(text);
@@ -293,7 +293,7 @@ public abstract class AbstractSystemOfUnits implements SystemOfUnits, Nameable {
 						return (U) aUnit;
 					}
 					break;
-				case SYMBOL_AND_LABEL:
+				case NAME:
 					if (text != null && unit instanceof AbstractUnit) {
 						AbstractUnit<?> aUnit = (AbstractUnit<?>) unit;
 						aUnit.setSymbol(text);
